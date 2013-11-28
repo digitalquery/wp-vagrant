@@ -27,6 +27,18 @@ Now fire up the Vagrant box:
 
 `vagrant up`
 
+It should come up at the IP address `192.168.50.2`, so if you put [that address](http://192.168.50.2) into your browser you should see a 'Vagrant is up!' message to show it's working.
+
+
+## Using a Different IP
+
+If you'd rather use a different IP address, you can specify your own in a `Vagrantfile` elsewhere. Check out the [Load Order and Merging](http://docs.vagrantup.com/v2/vagrantfile/) section in the Vagrant doc for more info.
+
+Specifying an IP address for the box to run on is useful as you can access the site on a nice, neat testing URL. I use `paulherron.l` for my own site, for example, which makes it really easy to [switch between my test site and live site](https://github.com/paulherron/domain_switcher). To do this I just declare the following in my `/etc/hosts` file:
+
+	192.168.50.2	paulherron.l
+	192.168.50.2	www.paulherron.l
+
 
 ## Packaging the Box
 
