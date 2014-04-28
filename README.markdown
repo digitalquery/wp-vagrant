@@ -46,8 +46,8 @@ You could consider packaging the box and using it in your own projects.
 
 With the box running, you can do:
 
-`vagrant package --output precise32_nginx_mysql_php-fpm.box`
-`vagrant box add precise32_nginx_mysql_php-fpm precise32_nginx_mysql_php-fpm.box`
+	vagrant package --output precise32_nginx_mysql_php-fpm.box
+	vagrant box add precise32_nginx_mysql_php-fpm precise32_nginx_mysql_php-fpm.box
 
 This should create a .box file that's about 500MB, and register it with your own Vagrant installation.
 
