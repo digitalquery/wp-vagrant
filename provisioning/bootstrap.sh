@@ -8,20 +8,20 @@ apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php
 
 echo "Moving nginx config files into place…"
 rm /etc/nginx/sites-enabled/default
-cp /vagrant/nginx/default.conf /etc/nginx/sites-enabled/
-cp /vagrant/nginx/generic.conf /etc/nginx/
-cp /vagrant/nginx/php.conf /etc/nginx/
-cp /vagrant/nginx/fastcgi_params.conf /etc/nginx/
-cp /vagrant/nginx/dummy.* /etc/nginx/
+cp /vagrant/provisioning/nginx/default.conf /etc/nginx/sites-enabled/
+cp /vagrant/provisioning/nginx/generic.conf /etc/nginx/
+cp /vagrant/provisioning/nginx/php.conf /etc/nginx/
+cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
+cp /vagrant/provisioning/nginx/dummy.* /etc/nginx/
 
 echo "Moving mysql config files into place…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
-cp /vagrant/mysql/my.cnf /etc/mysql/my.cnf
-mysql -u root -p100rows < /vagrant/mysql/database.sql
+cp /vagrant/provisioning/mysql/my.cnf /etc/mysql/my.cnf
+mysql -u root -proot < /vagrant/provisioning/mysql/database.sql
 
 echo "Moving php config files into place…"
 mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
-cp /vagrant/php/php.ini /etc/php5/fpm/php.ini
+cp /vagrant/provisioning/php/php.ini /etc/php5/fpm/php.ini
 
 echo "Starting services…"
 service nginx restart

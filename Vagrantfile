@@ -115,7 +115,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-  config.vm.provision :shell, :path => "bootstrap.sh"
+  config.vm.provision :shell, :path => "provisioning/bootstrap.sh"
   config.vm.network "private_network", ip: "192.168.50.2"
   #config.vm.synced_folder ".", "/vagrant", nfs: true
 
