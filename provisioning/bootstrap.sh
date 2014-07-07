@@ -6,12 +6,12 @@ debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password
 debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
 apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl vim git-core mysql-server-5.5 mysql-client curl byobu
 
+apt-get -y upgrade
+
 echo "Moving nginx config files into place…"
 rm /etc/nginx/sites-enabled/default
 cp /vagrant/provisioning/nginx/default.conf /etc/nginx/sites-enabled/
-cp /vagrant/provisioning/nginx/generic.conf /etc/nginx/
-cp /vagrant/provisioning/nginx/php.conf /etc/nginx/
-cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
+# cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
 cp /vagrant/provisioning/nginx/dummy.* /etc/nginx/
 
 echo "Moving mysql config files into place…"
