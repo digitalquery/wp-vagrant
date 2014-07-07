@@ -2,9 +2,9 @@
 
 apt-get update
 
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password 100rows'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password 100rows'
-apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl ffmpeg vim git-core mysql-server-5.5 mysql-client curl tmux
+debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
+debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
+apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl vim git-core mysql-server-5.5 mysql-client curl byobu
 
 echo "Moving nginx config files into place…"
 rm /etc/nginx/sites-enabled/default
