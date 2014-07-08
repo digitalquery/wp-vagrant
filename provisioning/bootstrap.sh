@@ -3,6 +3,7 @@
 apt-get update
 apt-get -y upgrade
 
+source /vagrant/provisioning/settings.sh
 
 debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
@@ -12,17 +13,15 @@ echo "General config stuff"
 cp /vagrant/provisioning/configs/.byobu/keybindings.tmux /home/vagrant/.byobu
 cp /vagrant/provisioning/configs/.byobu/status /home/vagrant/.byobu
 
-
 echo "Moving nginx config files into place…"
 rm /etc/nginx/sites-enabled/default
 cp /vagrant/provisioning/nginx/default.conf /etc/nginx/sites-enabled/
 # cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
 cp /vagrant/provisioning/nginx/dummy.* /etc/nginx/
 
-echo "Moving mysql config files into place…"
+echo " mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
 cp /vagrant/provisioning/mysql/my.cnf /etc/mysql/my.cnf
-mysql -u root -proot < /vagrant/provisioning/mysql/database.sql
 
 echo "Moving php config files into place…"
 mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
@@ -38,5 +37,5 @@ curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 chmod +x /tmp/wp-cli.phar
 sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
 
-
-#TODO add mysql db creation and dump loading
+echo "*** loading database"
+source /vagrant/provisioning/mysql/database.sh
