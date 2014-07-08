@@ -8,6 +8,10 @@ debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password
 debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
 apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl vim git-core mysql-server-5.5 mysql-client curl byobu
 
+echo "General config stuff"
+cp /vagrant/provisioning/configs/.byobu/keybindings.tmux /home/vagrant/.byobu
+cp /vagrant/provisioning/configs/.byobu/status /home/vagrant/.byobu
+
 
 echo "Moving nginx config files into place…"
 rm /etc/nginx/sites-enabled/default
@@ -33,3 +37,6 @@ echo "installing wp-cli"
 curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
 chmod +x /tmp/wp-cli.phar
 sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
+
+
+#TODO add mysql db creation and dump loading
