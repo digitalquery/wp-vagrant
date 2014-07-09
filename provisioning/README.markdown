@@ -1,23 +1,35 @@
-# Vagrant Box with Ubuntu 12.04, Nginx, MySQL and PHP-FPM
+# Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM,
 
-A Vagrant setup to create an Ubuntu 12.04 (Precise 32 bit) virtual machine with Nginx, MySQL and PHP.
+A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.
 
-Ideal for use as a base box in other projects, so you don't have to wait for the LNMP stack to install when you first do `vagrant up`.
+Intended to be as simple as possible - just drop into existing WP folder, modify settings.sh, add a database dump, and within minutes, you should be able to browse to nginx.local and see your site.
+
+* Loads specified database dump as part of provisioning
+* Renames all domain references using [WP-CLI](wp-cli.org)
+* Dumps the database to the shared folder on `vagrant destroy` — (this needs the [vagrant triggers plugin](https://github.com/emyl/vagrant-triggers) to be installed from [(https://github.com/emyl/vagrant-triggers)](https://github.com/emyl/vagrant-triggers))
+* Remote debugging using XDebug
 
 
 ## Contents
 
-* Ubuntu 12.04 LTS (Precise Pangolin, 32 bit)
+* Ubuntu 14.04 LTS (Trusty Tahir)
 * Nginx, listening on port 80 and on 443 using a dummy, self-signed certificate
 * MySQL, listening for remote connections so you can access it from your host machine, for example using [SequelPro](http://www.sequelpro.com/)
 * PHP-FPM
+* PHP 5.5, with OpCache and XDebug
+* [Byobu](http://byobu.co/)
+* [WP-CLI](wp-cli.org)
 
 
 ## Instructions
 
 Clone this repository:
 
-`git clone git@github.com:paulherron/vagrant_precise32_nginx_mysql_php-fpm.git`
+`git clone git@bitbucket.org:digitalquery/vagrant-nginx.git`
+
+#### OR
+
+Download a zip of the files here [https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz](https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz)
 
 Navigate into the newly-created directory:
 
