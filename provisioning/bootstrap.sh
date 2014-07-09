@@ -40,7 +40,7 @@ service nginx restart
 service php5-fpm restart
 service mysql restart
 
-if [ ! -d /usr/local/bin/wp ]; then
+if [ ! -f /usr/local/bin/wp ]; then
   echo "installing wp-cli"
   curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
   chmod +x /tmp/wp-cli.phar
