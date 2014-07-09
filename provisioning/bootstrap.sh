@@ -40,11 +40,12 @@ service nginx restart
 service php5-fpm restart
 service mysql restart
 
-echo "installing wp-cli"
-curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
-chmod +x /tmp/wp-cli.phar
-sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
-
+if [ ! -d /usr/local/bin/wp ]; then
+  echo "installing wp-cli"
+  curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
+  chmod +x /tmp/wp-cli.phar
+  sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
+fi
 
 echo "deploy_database is $deploy_database"
 if [ $deploy_database ]; then
