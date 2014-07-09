@@ -44,7 +44,9 @@ curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 chmod +x /tmp/wp-cli.phar
 sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
 
-if [ $deploy_database = true]; then
+
+echo "deploy_database is $deploy_database"
+if [ $deploy_database ]; then
   echo "*** loading database"
   source /vagrant/provisioning/mysql/database.sh
 else

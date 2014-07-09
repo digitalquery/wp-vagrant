@@ -6,7 +6,7 @@ mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS $db_name;"
 mysql -u root -proot $db_name < /vagrant/provisioning/$db_dump_file
 
 if [ ! -z "$db_user" ]; then
-  mysql -u root -proot -e "GRANT ALL ON $dbname.* TO '$dbuser'@'localhost' IDENTIFIED BY $db_password"
+  mysql -u root -proot -e "GRANT ALL ON $db_name.* TO '$db_user'@'localhost' IDENTIFIED BY '$db_password'"
 fi
 
 echo "*** wp-cli search and replace"
