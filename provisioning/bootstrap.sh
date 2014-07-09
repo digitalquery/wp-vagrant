@@ -5,8 +5,9 @@ apt-get -y upgrade
 
 source /vagrant/provisioning/settings.sh
 
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
+
 apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl php5-xdebug vim git-core mysql-server-5.5 mysql-client curl byobu
 
 echo "General config stuff"

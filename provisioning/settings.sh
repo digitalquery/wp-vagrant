@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
-# name of database: eg wordpress
-db_name=''
+#mysql root password
+mysql_root_password='root'
 
-# database user name
-db_user=''
-
-# database password
-db_password=''
 
 # set to true to import the database as part of the provisioning process
 deploy_database=true
 
+# name of database: eg wordpress
+wp_db_name=''
+
+# database user name
+wp_db_user=''
+
+# database password
+wp_db_password=''
+
 # database dump file that should be imported automatically: eg wordpress_dump.sql
-db_dump_file=''
+wp_db_dump_file=''
 
 # specify the domain that the imported dump file uses.
 # This allows us to search and replace the domain with nginx.local
