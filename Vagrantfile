@@ -47,8 +47,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Don't boot with headless mode
     # vb.gui = true
 
-    # Increase VM memory to 1GB
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    # Set VM memory to 256MB
+    vb.customize ["modifyvm", :id, "--memory", "256"]
+
 
     # these 2 commands massively speed up DNS resolution, which means outbound
     # connections don't take forever (eg the WP admin dashboard and update page)

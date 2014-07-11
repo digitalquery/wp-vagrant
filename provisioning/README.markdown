@@ -1,4 +1,4 @@
-# Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM,
+# Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM
 
 A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.
 
@@ -9,8 +9,11 @@ Intended to be as simple as possible - just drop into existing WP folder, modify
 * Dumps the database to the shared folder on `vagrant destroy` — (this needs the [vagrant triggers plugin](https://github.com/emyl/vagrant-triggers) to be installed from [(https://github.com/emyl/vagrant-triggers)](https://github.com/emyl/vagrant-triggers))
 * Remote debugging using XDebug
 
+## Acknowledgements
 
-## Contents
+This Vagrant box and provisioning is based on [this basebox from Paul Herron](https://github.com/paulherron/vagrant_precise32_nginx_mysql_php-fpm) and the [accompanying blog post](http://paulherron.com/blog/making_your_own_vagrant_wordpress_box/).
+
+## What's included in the VM?
 
 * Ubuntu 14.04 LTS (Trusty Tahir)
 * Nginx, listening on port 80 and on 443 using a dummy, self-signed certificate
@@ -19,23 +22,27 @@ Intended to be as simple as possible - just drop into existing WP folder, modify
 * PHP 5.5, with OpCache and XDebug
 * [Byobu](http://byobu.co/)
 * [WP-CLI](wp-cli.org)
+* Dump database automatically on `vagrant destroy`
 
 
 ## Instructions
 
-Clone this repository:
+These instructions are OS X specific, but the overall solution should work on any platform that Vagrant and VirtualBox support.
 
-`git clone git@bitbucket.org:digitalquery/vagrant-nginx.git`
+* Install VirtualBox
+* Install Vagrant
+* Install Vagrant triggers (vagrant plugin install vagrant-triggers)
+* Install vagrant-hostupdater (vagrant plugin install vagrant-hostsupdater)
+* Clone this repository:  `git clone git@bitbucket.org:digitalquery/vagrant-nginx.git`
+	* Or download an archive of the files here:   [https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz](https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz), and then `tar zxvf master.tar.gz`
+	* The rest of these instructions assume you have a folder `/Downloads/vagrant-wp/` that contains the unzipped / cloned files, and the WP folder in question is `~/Sites/wptest/`
+* Copy the Vagrantfile from the zip file or the clone folder to the root folder of the site you want to test - for a normal WP install, this is the main WP folder (ie where your wp-config.php is): `cp /Downloads/vagrant-wp/Vagrantfile ~/Sites/wptest`
+* copy the provisioning folder and subfolders: `cp -r /Downloads/vagrant-wp/Vagrantfile/provisioning ~/Sites/wptest`
+* if you want a database dump to be loaded into MySQL, then put a database dump into the provisioning folder
+* edit `~/Sites/provisioning/settings.sh`:
+	*
 
-#### OR
 
-Download a zip of the files here [https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz](https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz)
-
-Navigate into the newly-created directory:
-
-`cd vagrant_precise32_nginx_mysql_php-fpm`
-
-Now fire up the Vagrant box:
 
 `vagrant up`
 
@@ -57,32 +64,4 @@ If you check out that `bootstrap.sh` file it tells the rest of the story. It:
 * Moves some PHP configuration files into place, which includes a liberal php.ini file that should allow fairly large files to be uploaded without any problems, and a liberal amount of memory to be available without errors being thrown.
 
 
-## Using a Different IP
-
-If you'd rather use a different IP address, you can specify your own in a `Vagrantfile` elsewhere. Check out the [Load Order and Merging](http://docs.vagrantup.com/v2/vagrantfile/) section in the Vagrant doc for more info.
-
-Specifying an IP address for the box to run on is useful as you can access the site on a nice, neat testing URL. I use `paulherron.l` for my own site, for example, which makes it really easy to [switch between my test site and live site](https://github.com/paulherron/domain_switcher). To do this I just declare the following in my `/etc/hosts` file:
-
-	192.168.50.2	paulherron.l
-	192.168.50.2	www.paulherron.l
-
-
-## Packaging the Box
-
-You could consider packaging the box and using it in your own projects.
-
-With the box running, you can do:
-
-	vagrant package --output precise32_nginx_mysql_php-fpm.box
-	vagrant box add precise32_nginx_mysql_php-fpm precise32_nginx_mysql_php-fpm.box
-
-This should create a .box file that's about 500MB, and register it with your own Vagrant installation.
-
-Using the box in a different project is then as simple as adding this to that project's `Vagrantfile`:
-
-	# A custom base box is used.
-	# It has nginx, php-fpm and MySQL pre-installed.
-	config.vm.box = "precise32_nginx_mysql_php-fpm"
-
-	# You could optionally put the box on your own CDN so your collaborators can download it too.
-	config.vm.box_url = "http://yourcdn.example.com/boxes/precise32_nginx_mysql_php-fpm.box"
+x
