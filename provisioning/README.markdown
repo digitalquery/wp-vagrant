@@ -40,13 +40,16 @@ These instructions are OS X specific, but the overall solution should work on an
 * copy the provisioning folder and subfolders: `cp -r /Downloads/vagrant-wp/Vagrantfile/provisioning ~/Sites/wptest`
 * if you want a database dump to be loaded into MySQL, then put a database dump into the provisioning folder
 * edit `~/Sites/provisioning/settings.sh`:
-	*
+	* mysql_root_password='root'# your mysql root password
+	* deploy_database=true # if deploy_database is true, then we'll try to import the database dump into the vagrant mysql
+	* wp_db_name = "" # the database name (should be the same as in wp-config.php)
+	* wp_db_user='' # database user (should be the same as in wp-config.php)
+	* wp_db_password ='' # db password (should be the same as in wp-config.php)
+	* wp_db_dump_file='' # the name of the dump file, relative to the provisioning folder. So, if your db dump file is provisioning/wp_db.sql, wp_db_dump_file='wp_db.sql'
+	* import_site_domain='' # the domain you've been using for local development. The provisioning process will use wp-cli to safely replace this with `nginx.local`
+	* wordpress_path='' # normally /vagrant. If you've installed WP into a subdirectory, then put the path here, eg '/vagrant/blog'
+* And now you can run `vagrant up`. The provisioning scripts should start working and between 2 - 10 minutes later, you should be able to browse to nginx.local and see your site running.
 
-
-
-`vagrant up`
-
-It should come up at the IP address `192.168.50.2`, so if you put [that address](http://192.168.50.2) into your browser you should see a 'Vagrant is up!' message to show it's working.
 
 
 ## About the Setup
