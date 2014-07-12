@@ -21,11 +21,11 @@ cp /vagrant/provisioning/nginx/default.conf /etc/nginx/sites-enabled/
 # cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
 cp /vagrant/provisioning/nginx/dummy.* /etc/nginx/
 
-echo " mysql config…"
+echo "**** mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
 cp /vagrant/provisioning/mysql/my.cnf /etc/mysql/my.cnf
 
-echo "Moving php config files into place…"
+echo "**** Moving php config files into place…"
 mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
 cp /vagrant/provisioning/php/php.ini /etc/php5/fpm/php.ini
 sudo cp /vagrant/provisioning/php/20-xdebug.ini /etc/php5/fpm/conf.d/
