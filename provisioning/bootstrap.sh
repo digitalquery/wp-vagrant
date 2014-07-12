@@ -36,8 +36,12 @@ service php5-fpm restart
 service mysql restart
 
 
-echo "WP-CLI"
+# WP-CLI
 source /vagrant/provisioning/wp/wp-cli.sh
+
+# Install WP
+source /vagrant/provisioning/install-wp.sh
+
 
 
 echo "*** creating / deploying database"
