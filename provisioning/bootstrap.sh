@@ -48,7 +48,7 @@ if [ ! -f /usr/local/bin/wp ]; then
 fi
 
 echo "deploy_database is $deploy_database"
-if [ $deploy_database ]; then
+if $deploy_database ; then
   echo "*** loading database"
   source /vagrant/provisioning/mysql/database.sh
 else
