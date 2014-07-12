@@ -49,22 +49,3 @@ These instructions are OS X specific, but the overall solution should work on an
 	* import_site_domain='' # the domain you've been using for local development. The provisioning process will use wp-cli to safely replace this with `nginx.local`
 	* wordpress_path='' # normally /vagrant. If you've installed WP into a subdirectory, then put the path here, eg '/vagrant/blog'
 * And now you can run `vagrant up`. The provisioning scripts should start working and between 2 - 10 minutes later, you should be able to browse to nginx.local and see your site running.
-
-
-
-## About the Setup
-
-It's not too complicated a setup. There's a file called `Vagrantfile` in there, which is what Vagrant will take its initial instructions from when you fire up the virtual machine. This file declares a couple of key things: firstly that we want to use the `precise32` box to start with, which is that default Ubuntu installation. Then for neatness, we want to use a static IP address for the virtual machine: 192.168.50.2. This will mean we'll always know what IP address to navigate to access our website, and that if we're feeling like it we can also declare a neat testing domain by adding something like `192.168.50.2	default.l` onto the end of our `/etc/hosts` file on the host machine, which would let us view the site in the browser by navigating to http://default.l.
-
-Another key thing the Vagrantfile says is that we want to run the script `bootstrap.sh` when the machine gets provisioned. It's into that script that we put all of our shell commands for `apt-get install`ing software and moving configuration files into place.
-
-If you check out that `bootstrap.sh` file it tells the rest of the story. It:
-
-* Declares a root password of `100rows` for our database's root user.
-* Installs a boatload of packages: Nginx, MySQL and also some other things like Tmux for convenience when interacting with the machine later.
-* Moves various Nginx config files into place: things relating to PHP configuration, a dummy SSL certificate, as well as a config file that sets up a site called `default`.
-* Moves some MySQL configuration files into place, and runs a file config/database.sql, which contains a couple of extra commands to grant privileges to the root user and create an empty database called `default`.
-* Moves some PHP configuration files into place, which includes a liberal php.ini file that should allow fairly large files to be uploaded without any problems, and a liberal amount of memory to be available without errors being thrown.
-
-
-x
