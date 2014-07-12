@@ -40,17 +40,10 @@ service nginx restart
 service php5-fpm restart
 service mysql restart
 
-if [ ! -f /usr/local/bin/wp ]; then
-  echo "installing wp-cli"
-  curl  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
-  chmod +x /tmp/wp-cli.phar
-  sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
-fi
 
-echo "deploy_database is $deploy_database"
-if $deploy_database ; then
-  echo "*** loading database"
-  source /vagrant/provisioning/mysql/database.sh
-else
-  echo "skipping database load"
-fi
+echo "WP-CLI"
+source /vagrant/provisioning/wp/wp-cli.sh
+
+
+echo "*** creating / deploying database"
+source /vagrant/provisioning/mysql/database.sh
