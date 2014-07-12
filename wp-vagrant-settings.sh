@@ -35,7 +35,7 @@ wp_db_password=''
 #
 
 # set to true to import the database as part of the provisioning process
-deploy_database=false
+import_database=false
 
 # database dump file that should be imported automatically: eg wordpress_dump.sql
 wp_db_dump_file=''
