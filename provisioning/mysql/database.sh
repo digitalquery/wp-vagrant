@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+# if $wp_db_name is specified, then create the database
+
+if $wp_db_name ; then
+  mysql -u root -p$mysql_root_password -e "CREATE DATABASE IF NOT EXISTS $wp_db_name;"
+fi
+
 
 echo "*** deploying database dump"
-mysql -u root -p$mysql_root_password -e "CREATE DATABASE IF NOT EXISTS $wp_db_name;"
 mysql -u root -p$mysql_root_password $wp_db_name < /vagrant/provisioning/$wp_db_dump_file
 
 if [ ! -z "$wp_db_user" ]; then
