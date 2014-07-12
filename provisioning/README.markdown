@@ -2,7 +2,7 @@
 
 A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.
 
-Intended to be as simple as possible - just drop into existing WP folder, modify settings.sh, add a database dump, and within minutes, you should be able to browse to nginx.local and see your site.
+Intended to be as simple as possible - just drop into existing WP folder, modify , add a database dump, and within minutes, you should be able to browse to nginx.local and see your site.
 
 * Loads specified database dump as part of provisioning
 * Renames all domain references using [WP-CLI](wp-cli.org)
@@ -39,7 +39,7 @@ These instructions are OS X specific, but the overall solution should work on an
 * Copy the Vagrantfile from the zip file or the clone folder to the root folder of the site you want to test - for a normal WP install, this is the main WP folder (ie where your wp-config.php is): `cp /Downloads/vagrant-wp/Vagrantfile ~/Sites/wptest`
 * copy the provisioning folder and subfolders: `cp -r /Downloads/vagrant-wp/Vagrantfile/provisioning ~/Sites/wptest`
 * if you want a database dump to be loaded into MySQL, then put a database dump into the provisioning folder
-* edit `~/Sites/provisioning/settings.sh`:
+* edit `~/Sites/provisioning/`:
 	* mysql_root_password='root'# your mysql root password
 	* import_database=true # if import_database is true, then we'll try to import the database dump into the vagrant mysql
 	* wp_db_name = "" # the database name (should be the same as in wp-config.php)

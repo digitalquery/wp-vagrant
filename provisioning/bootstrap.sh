@@ -3,7 +3,7 @@
 apt-get update
 apt-get -y upgrade
 
-source /vagrant/provisioning/settings.sh
+source /vagrant/wp-vagrant-settings.sh
 
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
