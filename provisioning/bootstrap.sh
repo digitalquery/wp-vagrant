@@ -10,15 +10,10 @@ debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again pa
 
 apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl php5-xdebug vim git-core mysql-server-5.5 mysql-client curl byobu
 
-echo "General config stuff"
-if [ ! -d /home/vagrant/.byobu ]; then
-  mkdir /home/vagrant/.byobu
-fi
-cp /vagrant/provisioning/configs/.byobu/keybindings.tmux /home/vagrant/.byobu/
-cp /vagrant/provisioning/configs/.byobu/status /home/vagrant/.byobu/
-sudo chown -R vagrant:vagrant /home/vagrant/.byobu/
+echo "**** install byobu"
 
-echo "Moving nginx config files into place…"
+
+echo "**** Moving nginx config files into place…"
 if [ -f /etc/nginx/sites-enabled/default ]; then
   rm /etc/nginx/sites-enabled/default
 fi
