@@ -16,12 +16,12 @@ define( 'WP_DEBUG_LOG', true );
 PHP
 
 
-	wp core install --allow-root \
-								  --url=nginx.local \
-									--admin_user=$wp_admin_user \
-									--admin_password=$wp_admin_password \
-									--admin_email=$wp_admin_email \
-									--title=$wp_site_title
+#	wp core install --allow-root \
+#								  --url=nginx.local \
+#									--admin_user=$wp_admin_user \
+#									--admin_password=$wp_admin_password \
+#									--admin_email=$wp_admin_email \
+#									--title=$wp_site_title
 
 
 fi
