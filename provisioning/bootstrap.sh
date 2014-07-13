@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
 
-apt-get update
-apt-get -y upgrade
-
+#
+# load settings file
+#
 source /vagrant/wp-vagrant-settings.sh
 
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
 
+apt-get update
 apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php5-curl php5-xdebug vim git-core mysql-server-5.5 mysql-client curl byobu
 
-echo "**** install byobu"
 
+echo "**** add byobu config"
+source /vagrant/provisioning/configs/byobu.sh
 
 echo "**** Moving nginx config files into place…"
-if [ -f /etc/nginx/sites-enabled/default ]; then
-  rm /etc/nginx/sites-enabled/default
-fi
-cp /vagrant/provisioning/nginx/default.conf /etc/nginx/sites-enabled/
-# cp /vagrant/provisioning/nginx/fastcgi_params.conf /etc/nginx/
-cp /vagrant/provisioning/nginx/dummy.* /etc/nginx/
+source /vagrant/provisioning/nginx/nginx.sh
 
 echo "**** mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
@@ -40,9 +37,6 @@ service mysql restart
 source /vagrant/provisioning/wp/wp-cli.sh
 
 # Install WP
-source /vagrant/provisioning/install-wp.sh
+source /vagrant/provisioning/wp/install-wp.sh
 
-
-
-echo "*** creating / deploying database"
 source /vagrant/provisioning/mysql/database.sh

@@ -6,7 +6,7 @@
 #
 
 # set install_wordpress to true to download and install latest version of WP
-install_wordpress=false
+install_wordpress=true
 
 # specify path (inside the Vagrant VM) to WordPress to allow wp-cli to do search and replace
 # this will normall be /vagrant unless you've made other config changes
@@ -21,13 +21,26 @@ mysql_root_password='root'
 #
 
 # name of database: eg wordpress
-wp_db_name=''
+wp_db_name='vagrant_test'
 
 # database user name
 wp_db_user=''
 
 # database password
 wp_db_password=''
+
+###############################################################################
+# WP admin / install
+#
+
+wp_admin_user='admin'
+
+wp_admin_password='123'
+
+wp_admin_email='root@example.com'
+
+wp_site_title='Vagrant'
+
 
 
 ###############################################################################

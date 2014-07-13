@@ -47,8 +47,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Don't boot with headless mode
     # vb.gui = true
 
-    # Set VM memory to 256MB
-    vb.customize ["modifyvm", :id, "--memory", "256"]
+    # Set VM memory to 512MB
+    vb.customize ["modifyvm", :id, "--memory", "512"]
 
 
     # these 2 commands massively speed up DNS resolution, which means outbound
