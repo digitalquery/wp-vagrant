@@ -57,14 +57,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
-  config.vm.provision :shell, :path => "provisioning/bootstrap.sh"
+  config.vm.provision :shell, :path => "wp-vagrant/bootstrap.sh"
   config.vm.network "private_network", ip: "192.168.50.2"
   config.vm.hostname = "nginx.local"
 
   # Vagrant triggers
   config.trigger.before :destroy, :stdout => true do
     info "Dumping the database before destroying the VM..."
-    run  "vagrant ssh -c 'sh /vagrant/provisioning/mysql/db_dump.sh'"
+    run  "vagrant ssh -c 'sh /vagrant/wp-vagrant/mysql/db_dump.sh'"
 
   end
 

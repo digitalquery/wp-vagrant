@@ -8,7 +8,7 @@ if [ ! -z $wp_db_name ] ; then
 
   if $import_database ; then
     echo "**** importing database dump"
-    mysql -u root -p$mysql_root_password $wp_db_name < /vagrant/provisioning/$wp_db_dump_file
+    mysql -u root -p$mysql_root_password $wp_db_name < /vagrant/wp-vagrant/$wp_db_dump_file
 
     echo "*** wp-cli search and replace"
     wp --path=$wp_path --allow-root search-replace $import_site_domain nginx.local

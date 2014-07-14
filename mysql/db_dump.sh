@@ -2,7 +2,7 @@
 
 
 # read settings file
-. /vagrant/wp-vagrant-settings.sh
+. /vagrant/wp-vagrant/wp-vagrant-settings.sh
 
 
 echo "*****db name is $wp_db_name"
@@ -18,15 +18,15 @@ if [ ! -z $wp_db_name ]; then
   echo "**** dump file: /vagrant/provision/db_dumps/$db_dump_file"
 
 
-  if [ ! -d /vagrant/provisioning/db_dumps ]; then
-    mkdir /vagrant/provisioning/db_dumps
+  if [ ! -d /vagrant/wp-vagrant/db_dumps ]; then
+    mkdir /vagrant/wp-vagrant/db_dumps
   fi
 
-  mysqldump -u root --password=$mysql_root_password $wp_db_name > /vagrant/provisioning/db_dumps/$db_dump_file
+  mysqldump -u root --password=$mysql_root_password $wp_db_name > /vagrant/wp-vagrant/db_dumps/$db_dump_file
 
   if [ ! "$?" -eq 0 ]; then
     echo "***** DATABASE DUMP FAILED - YOU MAY WISH TO ABORT VAGRANT DESTROY."
-    echo "***** Check provisioning/db_dumps/error.log for more info"
+    echo "***** Check wp-vagrant/db_dumps/error.log for more info"
   fi
 
 

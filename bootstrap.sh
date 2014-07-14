@@ -13,19 +13,19 @@ apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php
 
 
 echo "**** add byobu config"
-. /vagrant/provisioning/configs/byobu.sh
+. /vagrant/wp-vagrant/configs/byobu.sh
 
 echo "**** Moving nginx config files into place…"
-. /vagrant/provisioning/nginx/nginx.sh
+. /vagrant/wp-vagrant/nginx/nginx.sh
 
 echo "**** mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
-cp /vagrant/provisioning/mysql/my.cnf /etc/mysql/my.cnf
+cp /vagrant/wp-vagrant/mysql/my.cnf /etc/mysql/my.cnf
 
 echo "**** Moving php config files into place…"
 mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
-cp /vagrant/provisioning/php/php.ini /etc/php5/fpm/php.ini
-sudo cp /vagrant/provisioning/php/20-xdebug.ini /etc/php5/fpm/conf.d/
+cp /vagrant/wp-vagrant/php/php.ini /etc/php5/fpm/php.ini
+sudo cp /vagrant/wp-vagrant/php/20-xdebug.ini /etc/php5/fpm/conf.d/
 
 echo "Starting services…"
 service nginx restart
@@ -34,14 +34,14 @@ service mysql restart
 
 
 # WP-CLI
-. /vagrant/provisioning/wp/wp-cli.sh
+. /vagrant/wp-vagrant/wp/wp-cli.sh
 
 # Create database
-. /vagrant/provisioning/mysql/create_database.sh
+. /vagrant/wp-vagrant/mysql/create_database.sh
 
 
 # Install WP
-. /vagrant/provisioning/wp/install-wp.sh
+. /vagrant/wp-vagrant/wp/install-wp.sh
 
 
-. /vagrant/provisioning/mysql/import_database.sh
+. /vagrant/wp-vagrant/mysql/import_database.sh
