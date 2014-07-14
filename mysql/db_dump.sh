@@ -15,7 +15,7 @@ if [ ! -z $wp_db_name ]; then
   db_dump_file=$wp_db_name"_"$now".sql"
 
   echo "**** dumping database before destroy"
-  echo "**** dump file: /vagrant/provision/db_dumps/$db_dump_file"
+  echo "**** dump file: wp-vagrant/db_dumps/$db_dump_file"
 
 
   if [ ! -d /vagrant/wp-vagrant/db_dumps ]; then
