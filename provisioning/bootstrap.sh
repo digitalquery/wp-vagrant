@@ -36,7 +36,12 @@ service mysql restart
 # WP-CLI
 source /vagrant/provisioning/wp/wp-cli.sh
 
+# Create database
+source /vagrant/provisioning/mysql/create_database.sh
+
+
 # Install WP
 source /vagrant/provisioning/wp/install-wp.sh
 
-source /vagrant/provisioning/mysql/database.sh
+
+source /vagrant/provisioning/mysql/import_database.sh
