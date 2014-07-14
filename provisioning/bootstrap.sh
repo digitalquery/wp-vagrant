@@ -3,7 +3,7 @@
 #
 # load settings file
 #
-source /vagrant/wp-vagrant-settings.sh
+. /vagrant/wp-vagrant-settings.sh
 
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
@@ -13,10 +13,10 @@ apt-get install -qy nginx php5 php5-fpm php5-gd php5-mysql php5-cgi php5-cli php
 
 
 echo "**** add byobu config"
-source /vagrant/provisioning/configs/byobu.sh
+. /vagrant/provisioning/configs/byobu.sh
 
 echo "**** Moving nginx config files into place…"
-source /vagrant/provisioning/nginx/nginx.sh
+. /vagrant/provisioning/nginx/nginx.sh
 
 echo "**** mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
@@ -34,14 +34,14 @@ service mysql restart
 
 
 # WP-CLI
-source /vagrant/provisioning/wp/wp-cli.sh
+. /vagrant/provisioning/wp/wp-cli.sh
 
 # Create database
-source /vagrant/provisioning/mysql/create_database.sh
+. /vagrant/provisioning/mysql/create_database.sh
 
 
 # Install WP
-source /vagrant/provisioning/wp/install-wp.sh
+. /vagrant/provisioning/wp/install-wp.sh
 
 
-source /vagrant/provisioning/mysql/import_database.sh
+. /vagrant/provisioning/mysql/import_database.sh
