@@ -11,7 +11,7 @@ if [ ! -z $wp_db_name ] ; then
     mysql -u root -p$mysql_root_password $wp_db_name < /vagrant/provisioning/$wp_db_dump_file
 
     echo "*** wp-cli search and replace"
-    wp --path=$wordpress_path --allow-root search-replace $import_site_domain nginx.local
+    wp --path=$wp_path --allow-root search-replace $import_site_domain nginx.local
   fi
 
 else

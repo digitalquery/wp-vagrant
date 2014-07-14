@@ -3,19 +3,28 @@
 
 if $install_wordpress ; then
 
-  echo "**** installing WP"
+  echo "**** installing WP $wp_version"
 
-	cd $wordpress_path;
+	cd $wp_path;
 
-	wp core download --allow-root --path=$wordpress_path
+  # if wp_version is specified, then add this
+  download_string=""
+  if [ ! -z $wp_version ]; then
+    download_string=" --version="$wp_version
+  fi
 
-	wp core config --allow-root --path=$wordpress_path --dbname=vagrant_test --dbuser=root --dbpass=root --extra-php <<PHP
+  # download core files
+	wp core download --allow-root --path=$wp_path $download_string
+
+  # create wp-config.php
+	wp core config --allow-root --path=$wp_path --dbname=vagrant_test --dbuser=root --dbpass=root --extra-php <<PHP
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 PHP
 
+  # install database
 	wp core install --allow-root \
-                  --path=$wordpress_path \
+                  --path=$wp_path \
 								  --url=nginx.local \
 									--admin_user=$wp_admin_user \
 									--admin_password=$wp_admin_password \
