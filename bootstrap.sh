@@ -3,7 +3,7 @@
 #
 # load settings file
 #
-. /vagrant/wp-vagrant-settings.sh
+. /vagrant/wp-vagrant/settings.sh
 
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"

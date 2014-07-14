@@ -2,7 +2,7 @@
 
 
 # read settings file
-. /vagrant/wp-vagrant/wp-vagrant-settings.sh
+. /vagrant/wp-vagrant/settings.sh
 
 
 echo "*****db name is $wp_db_name"
