@@ -23,9 +23,10 @@ This Vagrant box and provisioning is based on [this box from Paul Herron](https:
 
 * Ubuntu 14.04 LTS (Trusty Tahir)
 * Nginx, listening on port 80
-* MySQL, listening for remote connections so you can access it from your host machine, for example using [SequelPro](http://www.sequelpro.com/)
-* PHP-FPM
+* MySQL, listening for remote connections
 * PHP 5.5, with OpCache and XDebug
+* PHP-FPM
+* PHP-Unit
 * [Byobu](http://byobu.co/)
 * [WP-CLI](wp-cli.org)
 * Dump database automatically on `vagrant destroy`
