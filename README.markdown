@@ -10,8 +10,8 @@ Intended to be as simple as possible:
 * Quickly create a fresh WP instance served up via the Vagrant server.
 * Optionally specify which version of WP to install
 * Can be dropped into an existing WP directory to provide a LEMP testing and development server with minimal config changes
-* Can loads database dump as part of provisioning
-* Renames al l domain references using [WP-CLI](wp-cli.org)
+* Can load database dump as part of provisioning
+* Renames all domain references using WP-CLI
 * Dumps the database to the shared folder on `vagrant destroy` — (this needs the [vagrant triggers plugin](https://github.com/emyl/vagrant-triggers) to be installed from [(https://github.com/emyl/vagrant-triggers)](https://github.com/emyl/vagrant-triggers))
 * Remote debugging using XDebug
 
@@ -105,7 +105,7 @@ Use these intructions if you have an existing WP install
 
 ### Settings.sh
 
-The full list. 
+The full list.
 
 ##### Basic Settings
 
