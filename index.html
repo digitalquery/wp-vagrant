@@ -36,25 +36,31 @@
 
 <p>A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.</p>
 
-<p>Intended to be as simple as possible - just drop into existing WP folder, modify , add a database dump, and within minutes, you should be able to browse to nginx.local and see your site.</p>
+<p>Intended to be as simple as possible:</p>
+
+<h4>
+<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h4>
 
 <ul>
-<li>Loads specified database dump as part of provisioning</li>
-<li>Renames all domain references using <a href="wp-cli.org">WP-CLI</a>
+<li>Quickly create a fresh WP instance served up via the Vagrant server.</li>
+<li>Optionally specify which version of WP to install</li>
+<li>Can be dropped into an existing WP directory to provide a LEMP testing and development server with minimal config changes</li>
+<li>Can loads database dump as part of provisioning</li>
+<li>Renames al l domain references using <a href="wp-cli.org">WP-CLI</a>
 </li>
 <li>Dumps the database to the shared folder on <code>vagrant destroy</code> — (this needs the <a href="https://github.com/emyl/vagrant-triggers">vagrant triggers plugin</a> to be installed from <a href="https://github.com/emyl/vagrant-triggers">(https://github.com/emyl/vagrant-triggers)</a>)</li>
 <li>Remote debugging using XDebug</li>
 </ul><h2>
 <a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
 
-<p>This Vagrant box and provisioning is based on <a href="https://github.com/paulherron/vagrant_precise32_nginx_mysql_php-fpm">this basebox from Paul Herron</a> and the <a href="http://paulherron.com/blog/making_your_own_vagrant_wordpress_box/">accompanying blog post</a>.</p>
+<p>This Vagrant box and provisioning is based on <a href="https://github.com/paulherron/vagrant_precise32_nginx_mysql_php-fpm">this box from Paul Herron</a> and the <a href="http://paulherron.com/blog/making_your_own_vagrant_wordpress_box/">accompanying blog post</a>.</p>
 
 <h2>
 <a name="whats-included-in-the-vm" class="anchor" href="#whats-included-in-the-vm"><span class="octicon octicon-link"></span></a>What's included in the VM?</h2>
 
 <ul>
 <li>Ubuntu 14.04 LTS (Trusty Tahir)</li>
-<li>Nginx, listening on port 80 and on 443 using a dummy, self-signed certificate</li>
+<li>Nginx, listening on port 80</li>
 <li>MySQL, listening for remote connections so you can access it from your host machine, for example using <a href="http://www.sequelpro.com/">SequelPro</a>
 </li>
 <li>PHP-FPM</li>
@@ -68,40 +74,187 @@
 
 <p>These instructions are OS X specific, but the overall solution should work on any platform that Vagrant and VirtualBox support.</p>
 
-<ul>
-<li>Install VirtualBox</li>
-<li>Install Vagrant</li>
-<li>Install Vagrant triggers (vagrant plugin install vagrant-triggers)</li>
-<li>Install vagrant-hostupdater (vagrant plugin install vagrant-hostsupdater)</li>
-<li>Clone this repository:  <code>git clone git@bitbucket.org:digitalquery/vagrant-nginx.git</code>
+<h3>
+<a name="before-you-start" class="anchor" href="#before-you-start"><span class="octicon octicon-link"></span></a>Before you start</h3>
 
 <ul>
-<li>Or download an archive of the files here:   <a href="https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz">https://bitbucket.org/digitalquery/vagrant-nginx/get/master.tar.gz</a>, and then <code>tar zxvf master.tar.gz</code>
+<li>Install <a href="http://brew.sh/">Homebrew (http://brew.sh/)</a>
 </li>
-<li>The rest of these instructions assume you have a folder <code>/Downloads/vagrant-wp/</code> that contains the unzipped / cloned files, and the WP folder in question is <code>~/Sites/wptest/</code>
+<li>
+<p>If you want to install VirtualBox and Vagrant with Homebrew then install brew-cask:</p>
+
+<ul>
+<li><code>brew tap caskroom/cask</code></li>
+<li><code>brew install brew-cask</code></li>
+</ul>
+</li>
+<li>
+<p>Install VirtualBox</p>
+
+<ul>
+<li>Either download from the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox site (https://www.virtualbox.org/wiki/Downloads)</a>
+</li>
+<li>Or, install via homebrew <code>brew cask install virtualbox</code>
 </li>
 </ul>
 </li>
-<li>Copy the Vagrantfile from the zip file or the clone folder to the root folder of the site you want to test - for a normal WP install, this is the main WP folder (ie where your wp-config.php is): <code>cp /Downloads/vagrant-wp/Vagrantfile ~/Sites/wptest</code>
-</li>
-<li>copy the provisioning folder and subfolders: <code>cp -r /Downloads/vagrant-wp/Vagrantfile/provisioning ~/Sites/wptest</code>
-</li>
-<li>if you want a database dump to be loaded into MySQL, then put a database dump into the provisioning folder</li>
-<li>edit <code>~/Sites/provisioning/</code>:
+<li>
+<p>Install Vagrant</p>
 
 <ul>
-<li>mysql_root_password='root'# your mysql root password</li>
-<li>import_database=true # if import_database is true, then we'll try to import the database dump into the vagrant mysql</li>
-<li>wp_db_name = "" # the database name (should be the same as in wp-config.php)</li>
-<li>wp_db_user='' # database user (should be the same as in wp-config.php)</li>
-<li>wp_db_password ='' # db password (should be the same as in wp-config.php)</li>
-<li>wp_db_dump_file='' # the name of the dump file, relative to the provisioning folder. So, if your db dump file is provisioning/wp_db.sql, wp_db_dump_file='wp_db.sql'</li>
-<li>import_site_domain='' # the domain you've been using for local development. The provisioning process will use wp-cli to safely replace this with <code>nginx.local</code>
+<li>Either download from the <a href="https://www.vagrantup.com/downloads.html">Vagrant site (https://www.vagrantup.com/downloads.html)</a>
 </li>
-<li>wordpress_path='' # normally /vagrant. If you've installed WP into a subdirectory, then put the path here, eg '/vagrant/blog'</li>
+<li>Or, install via homebrew <code>brew cask install vagrant</code>
+</li>
 </ul>
 </li>
-<li>And now you can run <code>vagrant up</code>. The provisioning scripts should start working and between 2 - 10 minutes later, you should be able to browse to nginx.local and see your site running.</li>
+<li><p>Install Vagrant triggers <code>vagrant plugin install vagrant-triggers</code></p></li>
+<li>Install vagrant-hostupdater <code>vagrant plugin install vagrant-hostsupdater</code>
+</li>
+</ul><h3>
+<a name="fresh-wp-install" class="anchor" href="#fresh-wp-install"><span class="octicon octicon-link"></span></a>Fresh WP install</h3>
+
+<p>Use these instructions if you want to create a new WP site with the default empty database.</p>
+
+<ol>
+<li>Create directory for the site:
+
+<ul>
+<li><code>mkdir testsite</code></li>
+</ul>
+</li>
+<li>
+<code>cd</code> to this created directory</li>
+<li> Clone the wp-vagrant folder here
+
+<ul>
+<li><code>git clone git@github.com:digitalquery/wp-vagrant.git</code></li>
+</ul>
+</li>
+<li>Copy the VagrantFile into the site root directory
+
+<ul>
+<li><code>cp wp-vagrant/Vagrantfile .</code></li>
+</ul>
+</li>
+<li>Fire up Vagrant to create the VM and then run the provisioning scripts
+
+<ul>
+<li><code>vagrant up</code></li>
+<li>This may take a little while as the provisioning scripts download and install everything</li>
+</ul>
+</li>
+<li>Browse to <code>http://nginx.local</code> - you should see the default twentyfourteen theme</li>
+</ol><h3>
+<a name="existing-wp-install" class="anchor" href="#existing-wp-install"><span class="octicon octicon-link"></span></a>Existing WP install</h3>
+
+<p>Use these intructions if you have an existing WP install</p>
+
+<ol>
+<li>Go to the folder</li>
+<li>Clone the wp-vagrant repo
+
+<ul>
+<li><code>git clone git@github.com:digitalquery/wp-vagrant.git</code></li>
+<li>This creates a subfolder called <code>wp-vagrant</code>
+</li>
+</ul>
+</li>
+<li>Copy the VagrantFile into the site root directory
+
+<ul>
+<li><code>cp wp-vagrant/Vagrantfile .</code></li>
+</ul>
+</li>
+<li>If you want to import a database during the provisioning, then put a SQL dump file into the <code>wp-vagrant</code> folder</li>
+<li>Using your editor of choice, edit <code>wp-vagrant/settings.sh</code>
+
+<ul>
+<li>
+<code>install_wordpress=false</code>
+
+<ul>
+<li>the default for this is true, so change to false</li>
+</ul>
+</li>
+<li>
+<code>wp_db_name=&lt;db_name&gt;</code>
+
+<ul>
+<li>should be the same database name as in wp-config.php</li>
+</ul>
+</li>
+<li>
+<code>wp_db_user</code> and <code>wp_db_password</code>
+
+<ul>
+<li>If the wp-config file uses something different than root and the <code>mysql_root_password</code> then change these</li>
+<li>Otherwise leave blank</li>
+</ul>
+</li>
+<li>Leave the WP admin section variables empty</li>
+<li>
+<code>import_database=true</code>
+
+<ul>
+<li>set to true if you want to import a database ( and have a SQL dump file in the wp-vagrant folder)</li>
+</ul>
+</li>
+<li>
+<code>wp_db_dump_file=''</code>
+
+<ul>
+<li>this should be the name of the db dump file</li>
+</ul>
+</li>
+<li>
+<code>import_site_domain=''</code>
+
+<ul>
+<li>Put the domain that you were using, this should be the same domain as the database dump.</li>
+<li>We will search for this domain in the database and change it to <code>nginx.local</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>vagrant up</code></li>
+<li>Browse to <code>http://nginx.local</code> - and you should see your site up and running</li>
+</ol><h3>
+<a name="settingssh" class="anchor" href="#settingssh"><span class="octicon octicon-link"></span></a>Settings.sh</h3>
+
+<p>The full list. </p>
+
+<h5>
+<a name="basic-settings" class="anchor" href="#basic-settings"><span class="octicon octicon-link"></span></a>Basic Settings</h5>
+
+<ul>
+<li><code>install_wordpress=true</code></li>
+<li><code>wp_version=""</code></li>
+<li><code>wp_path='/vagrant'</code></li>
+<li><code>mysql_root_password='root'</code></li>
+</ul><h5>
+<a name="wp-database-credentials" class="anchor" href="#wp-database-credentials"><span class="octicon octicon-link"></span></a>WP database credentials</h5>
+
+<ul>
+<li><code>wp_db_name='vagrant_test'</code></li>
+<li><code>wp_db_user=''</code></li>
+<li><code>wp_db_password=''</code></li>
+</ul><h5>
+<a name="wp-admin-and-site-setup-details" class="anchor" href="#wp-admin-and-site-setup-details"><span class="octicon octicon-link"></span></a>WP admin and site setup details</h5>
+
+<ul>
+<li><code>wp_admin_user='admin'</code></li>
+<li><code>wp_admin_password='123'</code></li>
+<li><code>wp_admin_email='root@example.com'</code></li>
+<li><code>wp_site_title='Vagrant'</code></li>
+</ul><h5>
+<a name="database-import" class="anchor" href="#database-import"><span class="octicon octicon-link"></span></a>Database import</h5>
+
+<ul>
+<li><code>import_database=false</code></li>
+<li><code>wp_db_dump_file=''</code></li>
+<li><code>import_site_domain=''</code></li>
 </ul>
         </section>
 
