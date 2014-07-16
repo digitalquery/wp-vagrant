@@ -56,9 +56,6 @@ wp_site_title='Vagrant'
 # set to true to import the database as part of the provisioning process
 import_database=false
 
-# database dump file that should be imported automatically: eg wordpress_dump.sql
-wp_db_dump_file=''
-
 # specify the domain that the imported dump file uses.
 # This allows us to search and replace the domain with nginx.local
 # eg: mysite.com

@@ -2,7 +2,6 @@
 
 
 # if $wp_db_name is specified, then create the database and user (if neccesary)
-# if import_database is specified then import database and use wp-cli to rename domain
 
 if [ ! -z $wp_db_name ] ; then
 

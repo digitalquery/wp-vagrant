@@ -39,9 +39,8 @@ service mysql restart
 # Create database
 . /vagrant/wp-vagrant/mysql/create_database.sh
 
-
 # Install WP
 . /vagrant/wp-vagrant/wp/install-wp.sh
 
-
+# Import database
 . /vagrant/wp-vagrant/mysql/import_database.sh
