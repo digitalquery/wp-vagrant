@@ -60,6 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "wp-vagrant/bootstrap.sh"
   config.vm.network "private_network", ip: "192.168.50.2"
   config.vm.hostname = "nginx.local"
+  config.hostsupdater.remove_on_suspend = true
 
   # Vagrant triggers
   config.trigger.before :destroy, :stdout => true do
