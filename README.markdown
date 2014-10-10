@@ -83,7 +83,7 @@ Use these intructions if you have an existing WP install
 	* This creates a subfolder called `wp-vagrant`
 1. Copy the VagrantFile into the site root directory
 	* `cp wp-vagrant/Vagrantfile .`
-1. If you want to import a database during the provisioning, then put a SQL dump file into the `wp-vagrant` folder
+1. If you want to import a database during the provisioning, then put a SQL dump file into the `wp-vagrant` folder. **This file must have a .sql extension**
 1. Using your editor of choice, edit `wp-vagrant/settings.sh`
 	* `install_wordpress=false `
 		* the default for this is true, so change to false
@@ -95,8 +95,6 @@ Use these intructions if you have an existing WP install
 	* Leave the WP admin section variables empty
 	* `import_database=true`
 		* set to true if you want to import a database ( and have a SQL dump file in the wp-vagrant folder)
-	* `wp_db_dump_file=''`
-	 	* this should be the name of the db dump file
 	* `import_site_domain=''`
 		* Put the domain that you were using, this should be the same domain as the database dump.
 		* We will search for this domain in the database and change it to `nginx.local`
@@ -128,5 +126,4 @@ The full list.
 
 ##### Database import
 * `import_database=false`
-* `wp_db_dump_file=''`
 * `import_site_domain=''`
