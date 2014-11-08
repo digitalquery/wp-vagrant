@@ -26,6 +26,7 @@ echo "**** Moving php config files into place…"
 mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
 cp /vagrant/wp-vagrant/php/php.ini /etc/php5/fpm/php.ini
 sudo cp /vagrant/wp-vagrant/php/20-xdebug.ini /etc/php5/fpm/conf.d/
+cp /vagrant/wp-vagrant/php/www.conf /etc/php5/fpm/pool.d/
 
 echo "Starting services…"
 service nginx restart
