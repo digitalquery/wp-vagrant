@@ -29,6 +29,7 @@ This Vagrant box and provisioning is based on [this box from Paul Herron](https:
 * PHP-Unit
 * [Byobu](http://byobu.co/)
 * [WP-CLI](wp-cli.org)
+* APCu
 * Dump database automatically on `vagrant destroy`
 
 
