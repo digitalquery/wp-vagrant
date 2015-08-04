@@ -29,7 +29,7 @@ PHP
 									--admin_user=$wp_admin_user \
 									--admin_password=$wp_admin_password \
 									--admin_email=$wp_admin_email \
-									--title=$wp_site_title
+									--title="$wp_site_title"
 
 
 fi
