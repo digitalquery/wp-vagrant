@@ -17,7 +17,7 @@ if $install_wordpress ; then
 	wp core download --allow-root --path=$wp_path $download_string
 
   # create wp-config.php
-	wp core config --allow-root --path=$wp_path --dbname=vagrant_test --dbuser=root --dbpass=root --extra-php <<PHP
+	wp core config --allow-root --path=$wp_path --dbname=$wp_db_name --dbuser=$wp_db_user --dbpass=$wp_db_password --extra-php <<PHP
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 PHP
