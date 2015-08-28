@@ -20,10 +20,10 @@ if $install_wordpress ; then
   # create wp-config.php
   echo 'creating wp-config.php'
   if [ -z "$wp_db_user" ]; then
-    $wp_db_user='root'
+    wp_db_user='root'
   fi
   if [ -z "$wp_db_password" ]; then
-    $wp_db_password='root'
+    wp_db_password='root'
   fi
   echo "wp core config --path=$wp_path --dbname=$wp_db_name --dbuser=$wp_db_user --dbpass=$wp_db_password"
 
