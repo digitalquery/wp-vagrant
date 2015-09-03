@@ -21,7 +21,7 @@ if [ ! -z $wp_db_name ] && $import_database; then
 
       if [ ! -z $import_site_domain ]; then
         echo "**** wp-cli search and replace"
-        wp --path=$wp_path --allow-root search-replace $import_site_domain nginx.local
+        wp --path=$wp_path --allow-root search-replace $import_site_domain wpvagrant.dev
       fi
 
       ;;

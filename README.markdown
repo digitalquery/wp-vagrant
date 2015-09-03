@@ -71,7 +71,7 @@ Use these instructions if you want to create a new WP site with the default empt
 1. Fire up Vagrant to create the VM and then run the provisioning scripts
 	* `vagrant up`
 	* This may take a little while as the provisioning scripts download and install everything
-1. Browse to `http://nginx.local` - you should see the default twentyfourteen theme
+1. Browse to `http://wpvagrant.dev` - you should see the default twentyfourteen theme
 
 
 ### Existing WP install
@@ -98,9 +98,9 @@ Use these intructions if you have an existing WP install
 		* set to true if you want to import a database ( and have a SQL dump file in the wp-vagrant folder)
 	* `import_site_domain=''`
 		* Put the domain that you were using, this should be the same domain as the database dump.
-		* We will search for this domain in the database and change it to `nginx.local`
+		* We will search for this domain in the database and change it to `wpvagrant.dev`
 1. `vagrant up`
-1. Browse to `http://nginx.local` - and you should see your site up and running
+1. Browse to `http://wpvagrant.dev` - and you should see your site up and running
 
 
 ### Settings.sh

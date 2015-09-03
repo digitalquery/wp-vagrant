@@ -57,6 +57,6 @@ wp_site_title='Vagrant'
 import_database=false
 
 # specify the domain that the imported dump file uses.
-# This allows us to search and replace the domain with nginx.local
+# This allows us to search and replace the domain with dq-framework.dev
 # eg: mysite.com
 import_site_domain=''
