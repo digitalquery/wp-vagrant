@@ -7,7 +7,7 @@ if [ ! -f /usr/local/bin/wp ]; then
   chmod +x /tmp/wp-cli.phar
   sudo mv /tmp/wp-cli.phar /usr/local/bin/wp
 
-  # copy our site config and synlink it
+  # default wp-cli config
   cp /vagrant/wp-vagrant/wp/wp-cli.config.yml ~/.wp-cli/config.yml
 
 fi
