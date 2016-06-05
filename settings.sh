@@ -18,7 +18,7 @@ php_version='7.0'
 
 
 # set install_wordpress to true to download and install latest version of WP
-install_wordpress=false
+install_wordpress=true
 
 # WordPress version to install (if install_wordpress=true)
 # if blank, then current stable version will be installed
