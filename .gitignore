@@ -1,2 +1,3 @@
 .vagrant
 *.box
+db_dumps
