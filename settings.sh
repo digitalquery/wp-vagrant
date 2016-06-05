@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 
+
 ###############################################################################
-# Basic settings
+# Basic settings - for new and existing WP installations
 #
 
 # this is hostname for the vagrant box
@@ -16,9 +17,26 @@ hostname='wpvagrant.dev'
 # 7.0
 php_version='7.0'
 
+# specify path (inside the Vagrant VM) to WordPress to allow wp-cli to do search and replace
+# shouldn't need to change this from /vagrant unless you've made other config changes
+wp_path='/vagrant'
 
-# set install_wordpress to true to download and install latest version of WP
+#mysql root password, shouldn't need to change this
+mysql_root_password='root'
+
+
+###############################################################################
+#
+# Settings for creating a new site.
+# You do not have to change this section if you're dropping
+# WP Vagrant into an existing WP folder
+#
+
+# set to true to download and install latest version of WP
+# if we detect existing core files, then the WP download will not take place, even if
+# this is set to true, so it's normally safe to always have this set to true
 install_wordpress=true
+
 
 # WordPress version to install (if install_wordpress=true)
 # if blank, then current stable version will be installed
@@ -26,54 +44,45 @@ install_wordpress=true
 # wp_version="4.0-beta1"
 wp_version=""
 
-# specify path (inside the Vagrant VM) to WordPress to allow wp-cli to do search and replace
-# this will normall be /vagrant unless you've made other config changes
-wp_path='/vagrant'
 
-#mysql root password
-mysql_root_password='root'
-
-
-###############################################################################
-# WP database
-# this will create a db with these details
 #
-
+# database
+#
 
 # name of database: eg wordpress
 wp_db_name='wp_vagrant'
 
-# database user name, leave empty for root
+# database user name, leave empty to use the root user
 wp_db_user=''
 
 # database password
 wp_db_password=''
 
-###############################################################################
-# WP admin / install
-# if this is a new db install, then use these details for the
+#
 # initial WP admin user
 # ignored if install_wordpress is false
 #
 
 wp_admin_user='admin'
-
 wp_admin_password='123'
-
 wp_admin_email='root@example.com'
-
 wp_site_title='WP Vagrant'
 
+#
+# end of settings for a new site
+###############################################################################
 
 
 ###############################################################################
-# Importing database
+#
+# Settings for using wp-vagrant with an existing site
 #
 
 # set to true to import the database as part of the provisioning process
 import_database=false
 
 # specify the domain that the imported dump file uses.
-# This allows us to search and replace the domain with dq-framework.dev
-# eg: mysite.com
+# This allows us to search / replace the domain used in the dump file into
+# the hostname used by this vagrant instance
+
 import_site_domain=''
