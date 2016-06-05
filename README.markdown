@@ -102,6 +102,9 @@ Use these intructions if you have an existing WP install
 1. `vagrant up`
 1. Browse to your hostname - and you should see your site up and running
 
+### PHP version
+
+To change the PHP version, edit `settings.sh` and set the `php_version` setting to 5.5, 5.6 or 7.0. Run `vagrant provision` if you're changing an already created vagrant instance
 
 ### Settings.sh
 
