@@ -9,6 +9,7 @@ Intended to be as simple as possible:
 
 * Quickly create a fresh WP instance served up via the Vagrant server.
 * Optionally specify which version of WP to install
+* Choose PHP 5.5, 5.6 or 7.0
 * Can be dropped into an existing WP directory to provide a LEMP testing and development server with minimal config changes
 * Can load database dump as part of provisioning
 * Renames all domain references using WP-CLI
@@ -24,9 +25,8 @@ This Vagrant box and provisioning is based on [this box from Paul Herron](https:
 * Ubuntu 14.04 LTS (Trusty Tahir)
 * Nginx, listening on port 80
 * MySQL, listening for remote connections
-* PHP 5.5, with OpCache and XDebug
+* Choose between  PHP 5.5, 5.6 or 7.0, with OpCache and XDebug
 * PHP-FPM
-* PHP-Unit
 * [Byobu](http://byobu.co/)
 * [WP-CLI](wp-cli.org)
 * APCu
@@ -71,7 +71,7 @@ Use these instructions if you want to create a new WP site with the default empt
 1. Fire up Vagrant to create the VM and then run the provisioning scripts
 	* `vagrant up`
 	* This may take a little while as the provisioning scripts download and install everything
-1. Browse to `http://wpvagrant.dev` - you should see the default twentyfourteen theme
+1. Browse to your hostname - you should see the default twentyfourteen theme
 
 
 ### Existing WP install
@@ -98,19 +98,23 @@ Use these intructions if you have an existing WP install
 		* set to true if you want to import a database ( and have a SQL dump file in the wp-vagrant folder)
 	* `import_site_domain=''`
 		* Put the domain that you were using, this should be the same domain as the database dump.
-		* We will search for this domain in the database and change it to `wpvagrant.dev`
+		* We will search for this domain in the database and change it to $hostname
 1. `vagrant up`
-1. Browse to `http://wpvagrant.dev` - and you should see your site up and running
+1. Browse to your hostname - and you should see your site up and running
 
+### PHP version
+
+To change the PHP version, edit `settings.sh` and set the `php_version` setting to 5.5, 5.6 or 7.0. Run `vagrant provision` if you're changing an already created vagrant instance
 
 ### Settings.sh
 
-The full list.
+The full list - more comments and explanation are in the `settings.sh`file itself. 
 
 ##### Basic Settings
-
-* `install_wordpress=true`
-* `wp_version=""`
+* `hostname='wpvagrant.dev' # change this in the Vagrantfile as well`
+* `php_version='7.0' # valid values: '5.5', '5.6' or '7.0'`
+* `install_wordpress=true # change to false if this is being dropped in to an existing WP folder `
+* `wp_version="" # eg wp_version="3.5.2 or 4.0-beta1". Leave blank for latest stable release` 
 * `wp_path='/vagrant'`
 * `mysql_root_password='root'`
 
