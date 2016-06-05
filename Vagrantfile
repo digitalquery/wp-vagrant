@@ -65,7 +65,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # provisioning script
-  if ( provisioning_file = File.file?('wp-vagrant/bootstrap.sh') )
+  provisioning_file = 'wp-vagrant/bootstrap.sh'
+  if ( File.file?(provisioning_file) )
     config.vm.provision "shell" do |s|
             s.path = provisioning_file
     end
