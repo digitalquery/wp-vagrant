@@ -8,12 +8,7 @@
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
 
-# have taken a decision not to update this by default
-# all this provisioning has been moved into the base box setup (digitalquery/wpvagrant)
-
-# apt-get update && apt-get upgrade -y
-# apt-get install -qy nginx php5 php5-fpm php5-apcu php5-gd php5-mysql php5-cgi php5-cli php5-curl php5-xdebug phpunit vim git-core mysql-server-5.5 mysql-client curl byobu
-
+# default packages (php, mysql, nginx, etc), are preinstalled in the base boxs
 
 echo "**** add byobu config"
 . /vagrant/wp-vagrant/configs/byobu.sh
@@ -25,15 +20,17 @@ echo "**** mysql config…"
 mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
 cp /vagrant/wp-vagrant/mysql/my.cnf /etc/mysql/my.cnf
 
-echo "**** Moving php config files into place…"
-mv /etc/php5/fpm/php.ini /etc/php5/fpm/php.ini.default
-cp /vagrant/wp-vagrant/php/php.ini /etc/php5/fpm/php.ini
-sudo cp /vagrant/wp-vagrant/php/20-xdebug.ini /etc/php5/fpm/conf.d/
-cp /vagrant/wp-vagrant/php/www.conf /etc/php5/fpm/pool.d/
+echo "**** Set PHP to ${php_version} and copy config files"
+. /vagrant/wp-vagrant/php/php.sh
+
 
 echo "Starting services…"
 service nginx restart
-service php5-fpm restart
+service php5.5-fpm stop
+service php5.6-fpm stop
+service php7.0-fpm stop
+
+service php${php_version}-fpm restart
 service mysql restart
 
 

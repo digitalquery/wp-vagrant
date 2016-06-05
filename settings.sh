@@ -5,8 +5,20 @@
 # Basic settings
 #
 
+# this is hostname for the vagrant box
+# make sure to change it in the Vagrantfile as well
+hostname='wpvagrant.dev'
+
+# PHP version to install
+# valid values:
+# 5.5
+# 5.6
+# 7.0
+php_version='7.0'
+
+
 # set install_wordpress to true to download and install latest version of WP
-install_wordpress=true
+install_wordpress=false
 
 # WordPress version to install (if install_wordpress=true)
 # if blank, then current stable version will be installed
@@ -24,12 +36,14 @@ mysql_root_password='root'
 
 ###############################################################################
 # WP database
+# this will create a db with these details
 #
 
-# name of database: eg wordpress
-wp_db_name='vagrant_test'
 
-# database user name
+# name of database: eg wordpress
+wp_db_name='wp_vagrant'
+
+# database user name, leave empty for root
 wp_db_user=''
 
 # database password
@@ -37,6 +51,9 @@ wp_db_password=''
 
 ###############################################################################
 # WP admin / install
+# if this is a new db install, then use these details for the
+# initial WP admin user
+# ignored if install_wordpress is false
 #
 
 wp_admin_user='admin'
@@ -45,7 +62,7 @@ wp_admin_password='123'
 
 wp_admin_email='root@example.com'
 
-wp_site_title='Vagrant'
+wp_site_title='WP Vagrant'
 
 
 

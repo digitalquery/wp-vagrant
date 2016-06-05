@@ -12,6 +12,13 @@ if [ -f /etc/nginx/sites-enabled/default.conf ]; then
 fi
 
 
-# copy our site config and synlink it
+# copy our site config and symlink it
 cp /vagrant/wp-vagrant/nginx/default.conf /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+
+# rename vhost server name to hostname
+echo "nginx vhost conf..."
+sed -i "s/%%hostname%%/${hostname}/" /etc/nginx/sites-enabled/default.conf
+
+# php version for fpm
+sed -i "s/%%php_version%%/${php_version}/" /etc/nginx/sites-enabled/default.conf

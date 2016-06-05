@@ -35,7 +35,7 @@ PHP
   # install database
 	wp core install --allow-root \
                   --path=$wp_path \
-								  --url=wpvagrant.dev \
+								  --url=${hostname} \
 									--admin_user=$wp_admin_user \
 									--admin_password=$wp_admin_password \
 									--admin_email=$wp_admin_email \
