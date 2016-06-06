@@ -1,81 +1,85 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>WP-Vagrant by digitalquery</title>
+    <meta name="description" content="WP-Vagrant : A simple but powerful Vagrant setup for WordPress development">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>WP-Vagrant</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>WP-Vagrant</h1>
-          <h2>A simple but powerful Vagrant setup for WordPress development</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/digitalquery/wp-vagrant">View on GitHub</a>
+
+          <h1 id="project_title">WP-Vagrant</h1>
+          <h2 id="project_tagline">A simple but powerful Vagrant setup for WordPress development</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/digitalquery/wp-vagrant/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/digitalquery/wp-vagrant/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
+    </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/digitalquery/wp-vagrant/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/digitalquery/wp-vagrant/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/digitalquery/wp-vagrant" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h1>
-<a name="vagrant-box-with-ubuntu-1404-nginx-mysql-and-php-fpm" class="anchor" href="#vagrant-box-with-ubuntu-1404-nginx-mysql-and-php-fpm"><span class="octicon octicon-link"></span></a>Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM</h1>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="vagrant-box-with-ubuntu-1404-nginx-mysql-and-php-fpm" class="anchor" href="#vagrant-box-with-ubuntu-1404-nginx-mysql-and-php-fpm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM</h1>
 
 <p>A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.</p>
 
 <p>Intended to be as simple as possible:</p>
 
 <h4>
-<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h4>
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Summary</h4>
 
 <ul>
 <li>Quickly create a fresh WP instance served up via the Vagrant server.</li>
 <li>Optionally specify which version of WP to install</li>
+<li>Choose PHP 5.5, 5.6 or 7.0</li>
 <li>Can be dropped into an existing WP directory to provide a LEMP testing and development server with minimal config changes</li>
-<li>Can loads database dump as part of provisioning</li>
-<li>Renames al l domain references using <a href="wp-cli.org">WP-CLI</a>
-</li>
+<li>Can load database dump as part of provisioning</li>
+<li>Renames all domain references using WP-CLI</li>
 <li>Dumps the database to the shared folder on <code>vagrant destroy</code> — (this needs the <a href="https://github.com/emyl/vagrant-triggers">vagrant triggers plugin</a> to be installed from <a href="https://github.com/emyl/vagrant-triggers">(https://github.com/emyl/vagrant-triggers)</a>)</li>
 <li>Remote debugging using XDebug</li>
-</ul><h2>
-<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
+</ul>
+
+<h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgements</h2>
 
 <p>This Vagrant box and provisioning is based on <a href="https://github.com/paulherron/vagrant_precise32_nginx_mysql_php-fpm">this box from Paul Herron</a> and the <a href="http://paulherron.com/blog/making_your_own_vagrant_wordpress_box/">accompanying blog post</a>.</p>
 
 <h2>
-<a name="whats-included-in-the-vm" class="anchor" href="#whats-included-in-the-vm"><span class="octicon octicon-link"></span></a>What's included in the VM?</h2>
+<a id="whats-included-in-the-vm" class="anchor" href="#whats-included-in-the-vm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's included in the VM?</h2>
 
 <ul>
 <li>Ubuntu 14.04 LTS (Trusty Tahir)</li>
 <li>Nginx, listening on port 80</li>
-<li>MySQL, listening for remote connections so you can access it from your host machine, for example using <a href="http://www.sequelpro.com/">SequelPro</a>
-</li>
+<li>MySQL, listening for remote connections</li>
+<li>Choose between  PHP 5.5, 5.6 or 7.0, with OpCache and XDebug</li>
 <li>PHP-FPM</li>
-<li>PHP 5.5, with OpCache and XDebug</li>
 <li><a href="http://byobu.co/">Byobu</a></li>
 <li><a href="wp-cli.org">WP-CLI</a></li>
+<li>APCu</li>
 <li>Dump database automatically on <code>vagrant destroy</code>
 </li>
-</ul><h2>
-<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h2>
+</ul>
+
+<h2>
+<a id="instructions" class="anchor" href="#instructions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instructions</h2>
 
 <p>These instructions are OS X specific, but the overall solution should work on any platform that Vagrant and VirtualBox support.</p>
 
 <h3>
-<a name="before-you-start" class="anchor" href="#before-you-start"><span class="octicon octicon-link"></span></a>Before you start</h3>
+<a id="before-you-start" class="anchor" href="#before-you-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Before you start</h3>
 
 <ul>
 <li>Install <a href="http://brew.sh/">Homebrew (http://brew.sh/)</a>
@@ -111,8 +115,10 @@
 <li><p>Install Vagrant triggers <code>vagrant plugin install vagrant-triggers</code></p></li>
 <li>Install vagrant-hostupdater <code>vagrant plugin install vagrant-hostsupdater</code>
 </li>
-</ul><h3>
-<a name="fresh-wp-install" class="anchor" href="#fresh-wp-install"><span class="octicon octicon-link"></span></a>Fresh WP install</h3>
+</ul>
+
+<h3>
+<a id="fresh-wp-install" class="anchor" href="#fresh-wp-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fresh WP install</h3>
 
 <p>Use these instructions if you want to create a new WP site with the default empty database.</p>
 
@@ -144,9 +150,11 @@
 <li>This may take a little while as the provisioning scripts download and install everything</li>
 </ul>
 </li>
-<li>Browse to <code>http://nginx.local</code> - you should see the default twentyfourteen theme</li>
-</ol><h3>
-<a name="existing-wp-install" class="anchor" href="#existing-wp-install"><span class="octicon octicon-link"></span></a>Existing WP install</h3>
+<li>Browse to your hostname - you should see the default twentyfourteen theme</li>
+</ol>
+
+<h3>
+<a id="existing-wp-install" class="anchor" href="#existing-wp-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Existing WP install</h3>
 
 <p>Use these intructions if you have an existing WP install</p>
 
@@ -166,7 +174,8 @@
 <li><code>cp wp-vagrant/Vagrantfile .</code></li>
 </ul>
 </li>
-<li>If you want to import a database during the provisioning, then put a SQL dump file into the <code>wp-vagrant</code> folder</li>
+<li>If you want to import a database during the provisioning, then put a SQL dump file into the <code>wp-vagrant</code> folder. <strong>This file must have a .sql extension</strong>
+</li>
 <li>Using your editor of choice, edit <code>wp-vagrant/settings.sh</code>
 
 <ul>
@@ -201,69 +210,80 @@
 </ul>
 </li>
 <li>
-<code>wp_db_dump_file=''</code>
-
-<ul>
-<li>this should be the name of the db dump file</li>
-</ul>
-</li>
-<li>
 <code>import_site_domain=''</code>
 
 <ul>
 <li>Put the domain that you were using, this should be the same domain as the database dump.</li>
-<li>We will search for this domain in the database and change it to <code>nginx.local</code>
-</li>
+<li>We will search for this domain in the database and change it to $hostname</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><code>vagrant up</code></li>
-<li>Browse to <code>http://nginx.local</code> - and you should see your site up and running</li>
-</ol><h3>
-<a name="settingssh" class="anchor" href="#settingssh"><span class="octicon octicon-link"></span></a>Settings.sh</h3>
+<li>Browse to your hostname - and you should see your site up and running</li>
+</ol>
 
-<p>The full list. </p>
+<h3>
+<a id="php-version" class="anchor" href="#php-version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PHP version</h3>
+
+<p>To change the PHP version, edit <code>settings.sh</code> and set the <code>php_version</code> setting to 5.5, 5.6 or 7.0. Run <code>vagrant provision</code> if you're changing an already created vagrant instance</p>
+
+<h3>
+<a id="settingssh" class="anchor" href="#settingssh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Settings.sh</h3>
+
+<p>The full list - more comments and explanation are in the <code>settings.sh</code>file itself. </p>
 
 <h5>
-<a name="basic-settings" class="anchor" href="#basic-settings"><span class="octicon octicon-link"></span></a>Basic Settings</h5>
+<a id="basic-settings" class="anchor" href="#basic-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Settings</h5>
 
 <ul>
-<li><code>install_wordpress=true</code></li>
-<li><code>wp_version=""</code></li>
+<li><code>hostname='wpvagrant.dev' # change this in the Vagrantfile as well</code></li>
+<li><code>php_version='7.0' # valid values: '5.5', '5.6' or '7.0'</code></li>
+<li><code>install_wordpress=true # change to false if this is being dropped in to an existing WP folder</code></li>
+<li>
+<code>wp_version="" # eg wp_version="3.5.2 or 4.0-beta1". Leave blank for latest stable release</code> </li>
 <li><code>wp_path='/vagrant'</code></li>
 <li><code>mysql_root_password='root'</code></li>
-</ul><h5>
-<a name="wp-database-credentials" class="anchor" href="#wp-database-credentials"><span class="octicon octicon-link"></span></a>WP database credentials</h5>
+</ul>
+
+<h5>
+<a id="wp-database-credentials" class="anchor" href="#wp-database-credentials" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WP database credentials</h5>
 
 <ul>
 <li><code>wp_db_name='vagrant_test'</code></li>
 <li><code>wp_db_user=''</code></li>
 <li><code>wp_db_password=''</code></li>
-</ul><h5>
-<a name="wp-admin-and-site-setup-details" class="anchor" href="#wp-admin-and-site-setup-details"><span class="octicon octicon-link"></span></a>WP admin and site setup details</h5>
+</ul>
+
+<h5>
+<a id="wp-admin-and-site-setup-details" class="anchor" href="#wp-admin-and-site-setup-details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WP admin and site setup details</h5>
 
 <ul>
 <li><code>wp_admin_user='admin'</code></li>
 <li><code>wp_admin_password='123'</code></li>
 <li><code>wp_admin_email='root@example.com'</code></li>
 <li><code>wp_site_title='Vagrant'</code></li>
-</ul><h5>
-<a name="database-import" class="anchor" href="#database-import"><span class="octicon octicon-link"></span></a>Database import</h5>
+</ul>
+
+<h5>
+<a id="database-import" class="anchor" href="#database-import" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Database import</h5>
 
 <ul>
 <li><code>import_database=false</code></li>
-<li><code>wp_db_dump_file=''</code></li>
 <li><code>import_site_domain=''</code></li>
 </ul>
-        </section>
+      </section>
+    </div>
 
-        <footer>
-          WP-Vagrant is maintained by <a href="https://github.com/digitalquery">digitalquery</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">WP-Vagrant maintained by <a href="https://github.com/digitalquery">digitalquery</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-                  <script type="text/javascript">
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -274,7 +294,6 @@
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
+
   </body>
 </html>
