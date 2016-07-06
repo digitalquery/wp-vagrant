@@ -8,7 +8,13 @@
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
 
-# default packages (php, mysql, nginx, etc), are preinstalled in the base boxs
+# default packages (php, mysql, nginx, etc), are preinstalled in the base box
+# update anyway, and also make sure php-mbstring is installed
+# we'll move this into the base box next update 
+
+apt update
+apt upgrade
+apt install php-mbstring php7.0-mbstring
 
 echo "**** add byobu config"
 . /vagrant/wp-vagrant/configs/byobu.sh
