@@ -51,7 +51,7 @@ These instructions are OS X specific, but the overall solution should work on an
 * Install Vagrant
 	* Either download from the [Vagrant site (https://www.vagrantup.com/downloads.html)](https://www.vagrantup.com/downloads.html)
 	* Or, install via homebrew `brew cask install vagrant`
-
+* Install vagrant-hostmanager `vagrant plugin install vagrant-hostmanager`
 * Install Vagrant triggers `vagrant plugin install vagrant-triggers`
 * Install vagrant-hostupdater `vagrant plugin install vagrant-hostsupdater`
 
