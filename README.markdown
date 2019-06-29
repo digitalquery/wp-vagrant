@@ -65,7 +65,7 @@ Use these instructions if you want to create a new WP site with the default empt
 	* `mkdir testsite`
 1. `cd` to this created directory
 1.  Clone the wp-vagrant folder here
-	* `git clone git@github.com:digitalquery/wp-vagrant.git`
+	* `git clone https://github.com/digitalquery/wp-vagrant.git`
 1. Copy the VagrantFile into the site root directory
 	* `cp wp-vagrant/Vagrantfile .`
 1. Fire up Vagrant to create the VM and then run the provisioning scripts
