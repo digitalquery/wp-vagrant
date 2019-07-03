@@ -17,7 +17,7 @@ if [ ! -z $wp_db_name ] && $import_database; then
       echo "**** SQL file found - proceeding with import"
       wp_db_dump_file=$(find /vagrant/wp-vagrant -maxdepth 1 -name '*.sql')
       echo "**** import filename is: $wp_db_dump_file"
-      mysql -u root -p$mysql_root_password $wp_db_name < $wp_db_dump_file
+      mysql --defaults-extra-file=~/.mysql_root.cnf $wp_db_name < $wp_db_dump_file
 
       if [ ! -z $import_site_domain ]; then
         echo "**** wp-cli search and replace"

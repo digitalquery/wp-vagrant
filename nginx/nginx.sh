@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Start after boot
+sudo update-rc.d nginx enable
+
 # copy nginx config
 cp /vagrant/wp-vagrant/nginx/nginx.conf /etc/nginx/
 

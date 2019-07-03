@@ -10,11 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "digitalquery/wpvagrant"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  #  config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64"
+  config.vm.box = "ubuntu/bionic64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -55,21 +51,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.network "private_network", ip: "192.168.50.2"
-  config.vm.hostname = "wpvagrant.dev"
+  config.vm.hostname = "wpvagrant.test"
   config.hostsupdater.remove_on_suspend = true
 
   # Vagrant triggers
-  config.trigger.before :destroy, :stdout => true do
-    info "Dumping the database before destroying the VM..."
-    run  "vagrant ssh -c 'sh /vagrant/wp-vagrant/mysql/db_dump.sh'"
+  config.trigger.before :destroy do |trigger|
+    trigger.info = "Dumping the database before destroying the VM..."
+    trigger.run_remote = {inline: "sh /vagrant/wp-vagrant/mysql/db_dump.sh"}
   end
 
   # provisioning script
   provisioning_file = 'wp-vagrant/bootstrap.sh'
   if ( File.file?(provisioning_file) )
-    config.vm.provision "shell" do |s|
-            s.path = provisioning_file
-    end
+    config.vm.provision "shell",
+      inline: ". /vagrant/wp-vagrant/bootstrap.sh"
   end
 
 end

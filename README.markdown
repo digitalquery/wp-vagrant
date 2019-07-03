@@ -1,6 +1,6 @@
-# Vagrant Box with Ubuntu 14.04, Nginx, MySQL and PHP-FPM
+# Vagrant Box with Ubuntu 18.04, Nginx, MySQL and PHP-FPM
 
-A Vagrant setup to create an Ubuntu 14.04 (Trusty) virtual machine with Nginx, MySQL and PHP for WordPress development.
+A Vagrant setup to create an Ubuntu 18.04 (Bionic) virtual machine with Nginx, MySQL and PHP for WordPress development.
 
 Intended to be as simple as possible:
 
@@ -9,7 +9,7 @@ Intended to be as simple as possible:
 
 * Quickly create a fresh WP instance served up via the Vagrant server.
 * Optionally specify which version of WP to install
-* Choose PHP 5.5, 5.6 or 7.0
+* Choose PHP 5.6, 7.0, 7.1, 7.2, or 7.3
 * Can be dropped into an existing WP directory to provide a LEMP testing and development server with minimal config changes
 * Can load database dump as part of provisioning
 * Renames all domain references using WP-CLI
@@ -22,10 +22,10 @@ This Vagrant box and provisioning is based on [this box from Paul Herron](https:
 
 ## What's included in the VM?
 
-* Ubuntu 14.04 LTS (Trusty Tahir)
+* Ubuntu 18.04 LTS (Bionic Beaver) (https://app.vagrantup.com/ubuntu/boxes/bionic64)
 * Nginx, listening on port 80
 * MySQL, listening for remote connections
-* Choose between  PHP 5.5, 5.6 or 7.0, with OpCache and XDebug
+* Choose between PHP 5.6, 7.0, 7.1, 7.2, or 7.3, with OpCache and XDebug
 * PHP-FPM
 * [Byobu](http://byobu.co/)
 * [WP-CLI](wp-cli.org)
@@ -82,8 +82,10 @@ Use these intructions if you have an existing WP install
 1. Clone the wp-vagrant repo
 	* `git clone git@github.com:digitalquery/wp-vagrant.git`
 	* This creates a subfolder called `wp-vagrant`
-1. Copy the VagrantFile into the site root directory
+1. Copy the `Vagrantfile` into the site root directory
 	* `cp wp-vagrant/Vagrantfile .`
+	* Or alternatively, create a symbolic link:
+	* `ln -s wp-vagrant/Vagrantfile Vagrantfile`
 1. If you want to import a database during the provisioning, then put a SQL dump file into the `wp-vagrant` folder. **This file must have a .sql extension**
 1. Using your editor of choice, edit `wp-vagrant/settings.sh`
 	* `install_wordpress=false `
@@ -104,17 +106,17 @@ Use these intructions if you have an existing WP install
 
 ### PHP version
 
-To change the PHP version, edit `settings.sh` and set the `php_version` setting to 5.5, 5.6 or 7.0. Run `vagrant provision` if you're changing an already created vagrant instance
+To change the PHP version, edit `settings.sh` and set the `php_version` setting to 5.6, 7.0, 7.1, 7.2, or 7.3. Run `vagrant provision` if you're changing an already created vagrant instance
 
 ### Settings.sh
 
-The full list - more comments and explanation are in the `settings.sh`file itself. 
+The full list - more comments and explanation are in the `settings.sh`file itself.
 
 ##### Basic Settings
-* `hostname='wpvagrant.dev' # change this in the Vagrantfile as well`
-* `php_version='7.0' # valid values: '5.5', '5.6' or '7.0'`
+* `hostname='wpvagrant.test' # change this in the Vagrantfile as well`
+* `php_version='7.2' # valid values: '5.6', '7.0', '7.1', '7.2', or '7.3'`
 * `install_wordpress=true # change to false if this is being dropped in to an existing WP folder `
-* `wp_version="" # eg wp_version="3.5.2 or 4.0-beta1". Leave blank for latest stable release` 
+* `wp_version="" # eg wp_version="3.5.2 or 4.0-beta1". Leave blank for latest stable release`
 * `wp_path='/vagrant'`
 * `mysql_root_password='root'`
 
@@ -126,7 +128,7 @@ The full list - more comments and explanation are in the `settings.sh`file itsel
 ##### WP admin and site setup details
 * `wp_admin_user='admin'`
 * `wp_admin_password='123'`
-* `wp_admin_email='root@example.com'`
+* `wp_admin_email='root@wpvagrant.test'`
 * `wp_site_title='Vagrant'`
 
 ##### Database import

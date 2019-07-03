@@ -5,16 +5,17 @@
 #
 . /vagrant/wp-vagrant/settings.sh
 
-debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $mysql_root_password"
-debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $mysql_root_password"
+# https://serversforhackers.com/c/installing-mysql-with-debconf
+debconf-set-selections <<< "mysql-server mysql-server/root_password password $mysql_root_password"
+debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $mysql_root_password"
 
-# default packages (php, mysql, nginx, etc), are preinstalled in the base box
-# update anyway, and also make sure php-mbstring is installed
-# we'll move this into the base box next update 
 
+add-apt-repository -y ppa:ondrej/php
+add-apt-repository -y ppa:ondrej/nginx-mainline
 apt-get update
 apt-get upgrade
-apt-get install php-mbstring php7.0-mbstring php5.5-mbstring php5.6-mbstring -y
+
+apt-get install -y nginx php${php_version} php${php_version}-fpm php${php_version}-gd php${php_version}-mysql php${php_version}-cgi php${php_version}-cli php${php_version}-curl php${php_version}-mbstring ffmpeg vim git-core mysql-server mysql-client curl tmux
 
 echo "**** add byobu config"
 . /vagrant/wp-vagrant/configs/byobu.sh
@@ -23,8 +24,7 @@ echo "**** Moving nginx config files into place…"
 . /vagrant/wp-vagrant/nginx/nginx.sh
 
 echo "**** mysql config…"
-mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
-cp /vagrant/wp-vagrant/mysql/my.cnf /etc/mysql/my.cnf
+. /vagrant/wp-vagrant/mysql/mysql.sh
 
 echo "**** Set PHP to ${php_version} and copy config files"
 . /vagrant/wp-vagrant/php/php.sh
@@ -32,10 +32,6 @@ echo "**** Set PHP to ${php_version} and copy config files"
 
 echo "Starting services…"
 service nginx restart
-service php5.5-fpm stop
-service php5.6-fpm stop
-service php7.0-fpm stop
-
 service php${php_version}-fpm restart
 service mysql restart
 

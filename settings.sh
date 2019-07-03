@@ -8,14 +8,16 @@
 
 # this is hostname for the vagrant box
 # make sure to change it in the Vagrantfile as well
-hostname='wpvagrant.dev'
+hostname='wpvagrant.test'
 
 # PHP version to install
 # valid values:
-# 5.5
 # 5.6
 # 7.0
-php_version='7.0'
+# 7.1
+# 7.2
+# 7.3
+php_version='7.2'
 
 # specify path (inside the Vagrant VM) to WordPress to allow wp-cli to do search and replace
 # shouldn't need to change this from /vagrant unless you've made other config changes
@@ -65,7 +67,7 @@ wp_db_password=''
 
 wp_admin_user='admin'
 wp_admin_password='123'
-wp_admin_email='root@example.com'
+wp_admin_email='root@wpvagrant.test'
 wp_site_title='WP Vagrant'
 
 #

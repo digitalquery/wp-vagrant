@@ -22,7 +22,7 @@ if [ ! -z $wp_db_name ]; then
     mkdir /vagrant/wp-vagrant/db_dumps
   fi
 
-  mysqldump -u root --password=$mysql_root_password $wp_db_name > /vagrant/wp-vagrant/db_dumps/$db_dump_file
+  mysqldump --defaults-extra-file=~/.mysql_root.cnf $wp_db_name > /vagrant/wp-vagrant/db_dumps/$db_dump_file
 
   if [ ! "$?" -eq 0 ]; then
     echo "***** DATABASE DUMP FAILED - YOU MAY WISH TO ABORT VAGRANT DESTROY."
