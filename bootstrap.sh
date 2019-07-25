@@ -15,7 +15,7 @@ add-apt-repository -y ppa:ondrej/nginx-mainline
 apt-get update
 apt-get upgrade
 
-apt-get install -y nginx php${php_version} php${php_version}-fpm php${php_version}-gd php${php_version}-mysql php${php_version}-cgi php${php_version}-cli php${php_version}-curl php${php_version}-mbstring ffmpeg vim git-core mysql-server mysql-client curl tmux
+apt-get install -y nginx php${php_version} php${php_version}-fpm php${php_version}-gd php${php_version}-mysql php${php_version}-cgi php${php_version}-cli php${php_version}-curl php${php_version}-mbstring php${php_version}-xdebug ffmpeg vim git-core mysql-server mysql-client curl tmux
 
 echo "**** add byobu config"
 . /vagrant/wp-vagrant/configs/byobu.sh
